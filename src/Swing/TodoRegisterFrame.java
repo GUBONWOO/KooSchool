@@ -37,12 +37,14 @@ public class TodoRegisterFrame extends JFrame {
                 try {
                     File file = new File("./src/file","test.csv");
                     FileWriter writer = new FileWriter(file, true);
-                   bw = new BufferedWriter(writer);
+                    bw = new BufferedWriter(writer);
 
                     bw.write(todoItem);
                     bw.newLine();
-
+//                    bw.flush();
+                    bw.close();
                     dispose();
+
                     MainFrame.loadTodosFromFile();
 
                 } catch (IOException ex) {
