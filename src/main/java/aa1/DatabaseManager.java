@@ -30,6 +30,7 @@ public class DatabaseManager {
     // 데이터 조회 메서드
     public void getInf(int month) {
         String query = "SELECT * FROM transports WHERE date = " + month;
+        int total =0;
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -40,7 +41,10 @@ public class DatabaseManager {
                 int date = rs.getInt("date");
                 int price = rs.getInt("price");
                 System.out.println("이름: " + name + ", 목적지: " + dsn + ", 월: " + date + ", 금액: " + price);
+                total += price;
             }
+            System.out.println("총 금액: " + total + "원");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
